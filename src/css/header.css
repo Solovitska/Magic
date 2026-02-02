@@ -1,238 +1,221 @@
-/* Основні стилі для заголовка сторінки */
+/* CSS Variables for colors and reusable values */
+:root {
+  --primary-color: #3498db; /* Основний блакитний колір */
+  --secondary-color: #60089f; /* Додатковий фіолетовий колір */
+  --text-dark: #4a4a4a; /* Темний текст */
+  --text-light: #ecf0f1; /* Світлий текст */
+  --bg-light: #f0f4f8; /* Світлий фон */
+  --bg-dark: #2c3e50; /* Темний фон */
+  --bg-hover: #34495e; /* Фон при наведенні */
+  --border-color: #4eb5ffb0; /* Колір бордера */
+  --transition: 0.3s ease; /* Загальна анімація */
+  --gradient: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); /* Градієнт для ефекту */
+}
+
+/* Base styles for mobile-first approach */
 .page-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  background-color: #f0f4f8; /* Світлий нейтральний фон */
-  color: #261e4f9b; /* Темний колір тексту */
-  font-size: 14px; /* Трохи збільшений розмір шрифту */
-  padding: 0 20px;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  font-size: 1rem;
+  padding: 1rem;
   box-sizing: border-box;
-  border-bottom: 5px solid #4eb5ffb0; /* Легка тінь для розділення */
+  border-bottom: 0.3125rem solid var(--border-color); /* 5px */
 }
 
-/* Стилі для логотипу */
+/* Logo styles */
 .logo img {
   display: block;
-  width: 90px;
-  height: auto; /* Автоматична висота для збереження пропорцій */
+  width: 5.625rem; /* 90px */
+  height: auto;
 }
 
-/* Стилі для заголовка */
+/* Header title with effects */
 .header-title h1 {
-  font-size: 2rem; /* Збільшений розмір шрифту для більшого акценту */
+  font-size: 1.5rem;
   font-weight: 700;
-  color: #4a4a4a; /* Темний сірий колір тексту */
+  margin: 0;
+  background: var(--gradient); /* Градієнтний фон */
+  -webkit-background-clip: text; /* Кліпинг фону до тексту */
+  -webkit-text-fill-color: transparent; /* Прозорий колір тексту для градієнту */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Тінь для глибини */
+  animation: pulse 2s infinite; /* Анімація пульсації */
+  transition: transform var(--transition); /* Плавний зсув */
 }
 
-/* Стилі для бургер-меню */
+.header-title h1:hover {
+  transform: scale(1.05); /* Збільшення при наведенні */
+}
+
+/* Keyframes for animation */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Burger menu */
 .burger {
-  display: none; /* Приховуємо бургер-меню за замовчуванням */
-  position: relative;
-  width: 30px; /* Ширина бургер-меню */
-  height: 24px; /* Загальна висота бургер-меню */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 1.875rem; /* 30px */
+  height: 1.5rem; /* 24px */
+  background: none;
+  border: none;
   cursor: pointer;
-  z-index: 1000; /* Забезпечує видимість поверх інших елементів */
-  flex-direction: column; /* Вирівнюємо смужки одна під одною */
-  justify-content: space-between; /* Відстань між смужками */
+  z-index: 1000;
+  position: relative;
 }
 
 .burger span {
-  display: block; /* Кожна смужка в блочному режимі */
-  width: 100%; /* Смужки мають займати всю ширину контейнера */
-  height: 3px; /* Висота кожної смужки */
-  background-color: #3498db; /* Колір смужок */
-  margin: 0; /* Видаляємо зайві відступи */
-  transition: all 0.3s ease; /* Анімація при переходах */
-}
-
-/* Стилі для активного стану бургер-меню */
-.burger.active span {
-  transform: scale(0);
-}
-
-.burger.active::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 30px;
-  height: 2px;
-  background-color: #3498db; /* Яскравий блакитний колір для перетворень */
-  transform: rotate(-45deg) translate(-50%, -50%);
-}
-
-.burger.active::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 30px;
-  height: 2px;
-  background-color: #3498db; /* Яскравий блакитний колір для перетворень */
-  transform: rotate(45deg) translate(-50%, 50%);
-}
-
-/* Стилі для навігації */
-
-.about-us-nav {
   display: block;
+  width: 100%;
+  height: 0.1875rem; /* 3px */
+  background-color: var(--primary-color);
+  transition: var(--transition);
+}
+
+.burger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(0.3125rem, 0.3125rem); /* Анімація для хреста */
+}
+
+.burger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(0.4375rem, -0.4375rem);
+}
+
+/* Navigation styles */
+.about-us-nav {
   position: fixed;
-  padding: 20px;
   top: 0;
   left: 0;
-  width: 250px; /* Ширина навігації */
+  width: 100%;
   height: 100%;
-  background: #2c3e50; /* Темний фон */
+  background-color: var(--bg-dark);
   transform: translateX(-100%);
-  transition: transform 0.5s;
-  z-index: 20;
+  transition: transform 0.4s ease;
+  z-index: 999;
+  padding: 4.375rem 1.25rem; /* 70px 20px */
+  overflow-y: auto;
+  display: none;
 }
 
-/* Список навігаційних пунктів */
+.about-us-nav.open {
+  transform: translateX(0);
+  display: block;
+}
+
 .about-us-nav ul {
-  list-style: none; /* Прибирає маркери списку */
+  list-style: none;
   padding: 0;
   margin: 0;
 }
 
-/* Стилі для кожного пункту навігації */
 .about-us-nav li {
-  margin-bottom: 20px; /* Відстань між пунктами меню */
+  margin-bottom: 1.25rem; /* 20px */
 }
 
-/* Стилі для посилань навігації */
 .about-us-nav a {
-  text-decoration: none; /* Прибирає підкреслення з посилань */
-  color: #ecf0f1; /* Світлий колір тексту */
-  padding: 15px 20px; /* Відступи всередині пунктів меню */
-  display: block; /* Перетворює посилання в блочний елемент */
-  background-color: #34495e; /* Темно-сірий фон пунктів меню */
-  border-radius: 8px; /* Закруглені кути */
-  transition: background-color 0.3s ease, color 0.3s ease; /* Анімація при наведенні */
-  font-size: 18px; /* Збільшений розмір шрифту */
+  text-decoration: none;
+  color: var(--text-light);
+  padding: 0.9375rem 1.25rem; /* 15px 20px */
+  display: block;
+  background-color: var(--bg-hover);
+  border-radius: 0.5rem; /* 8px */
+  transition: background-color var(--transition), color var(--transition);
+  font-size: 1.000rem; /* 18px */
 }
 
-/* Стилі при наведенні на пункт меню */
-.about-us-nav a:hover {
-  background-color: #1abc9c; /* Світлий фон при наведенні */
-  color: #fff; /* Білий колір тексту при наведенні */
+.about-us-nav a:hover,
+.about-us-nav a:focus {
+  background-color: #14011f;
+  color: #fff;
 }
 
-/* Стилі для бургер-меню */
-.burger {
-  display: none; /* Приховуємо бургер-меню за замовчуванням */
-  position: relative;
-  width: 30px; /* Ширина бургер-меню */
-  height: 24px; /* Загальна висота бургер-меню */
-  cursor: pointer;
-  z-index: 1000; /* Забезпечує видимість поверх інших елементів */
-  flex-direction: column; /* Вирівнюємо смужки одна під одною */
-  justify-content: space-between; /* Відстань між смужками */
+/* Media query for tablets and larger (min-width: 768px) */
+@media screen and (min-width: 768px) {
+  .page-header {
+    padding: 1rem 2rem;
+  }
+
+  .header-title h1 {
+    font-size: 2rem;
+  }
+
+  .logo img {
+    width: 10rem; /* 160px для більших екранів */
+  }
 }
 
-/* Стилі для активного стану бургер-меню */
-.burger.active span {
-  transform: scale(0);
-}
-
-.burger.active::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 30px;
-  height: 2px;
-  background-color: #3498db; /* Яскравий блакитний колір для перетворень */
-  transform: rotate(-45deg) translate(-50%, -50%);
-}
-
-.burger.active::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 30px;
-  height: 2px;
-  background-color: #3498db; /* Яскравий блакитний колір для перетворень */
-  transform: rotate(45deg) translate(-50%, 50%);
-}
-
-/* Анімація при відкритті меню */
-.about-us-nav.open {
-  transform: translateX(0); /* Висуваємо меню на екран */
-}
-
-/* Адаптивність для планшетів і мобільних пристроїв */
-@media screen and (max-width: 1024px) {
+/* Media query for desktops (min-width: 1024px) */
+@media screen and (min-width: 1024px) {
   .burger {
-    display: flex; /* Відображаємо бургер-меню на планшетах та мобільних пристроях */
+    display: none;
   }
 
   .about-us-nav {
-    display: none; /* Ховаємо навігацію за замовчуванням */
-    flex-direction: column;
-    position: fixed; /* Фіксоване позиціонування */
-    top: 0;
-    left: 0;
-    z-index: 999; /* Під бургер-меню, але поверх іншого контенту */
-    width: 100%;
-    height: 100%;
-    padding: 70px 20px;
-    background-color: rgba(201, 223, 247, 0.392); /* Темний фон з невеликою прозорістю */
-    transform: translateX(-100%); /* Ховаємо меню за межами екрану */
-    transition: transform 0.4s ease;
-    overflow-y: auto; /* Додаємо скролінг, якщо вміст перевищує висоту */
-  }
-
-  .about-us-nav.open {
-    display: flex; /* Відображаємо навігацію при активації */
-    transform: translateX(0); /* Висуваємо меню на екран */
-  }
-
-  .page-header .logo {
-    display: none; /* Ховаємо логотип на планшетах та мобільних пристроях */
-  }
-}
-
-/* Медіа-запити для десктопних пристроїв */
-/* Медіа-запити для десктопних пристроїв */
-@media screen and (min-width: 1440px) {
-  .burger {
-    display: none; /* Ховаємо бургер-меню на десктопних пристроях */
-  }
-
-  .about-us-nav {
-    display: flex; /* Відображаємо навігацію на десктопних пристроях */
-    position: static; /* Забираємо фіксоване позиціонування */
-    transform: none; /* Вимикаємо будь-яке зміщення */
-    background-color: transparent; /* Фон робимо прозорим */
-    width: auto; /* Немає обмеження по ширині */
-    height: auto; /* Автоматична висота */
-    padding: 0; /* Забираємо зайві відступи */
+    display: flex;
+    position: static;
+    transform: none;
+    background-color: transparent;
+    width: auto;
+    height: auto;
+    padding: 0;
+    overflow-y: visible;
   }
 
   .about-us-nav ul {
-    display: flex; /* Вирівнюємо пункти меню в рядок */
-    justify-content: space-between; /* Відстань між пунктами меню */
-    align-items: center; /* Вирівнювання пунктів по центру вертикально */
-    width: 100%; /* Ширина на весь контейнер */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem; /* Відстань між пунктами */
   }
 
   .about-us-nav li {
-    margin-bottom: 0; /* Видаляємо зайвий відступ між пунктами */
+    margin-bottom: 0;
   }
 
   .about-us-nav a {
-    background-color: transparent; /* Прибираємо фон у пунктів меню */
-    color: #4a4a4a; /* Темний колір тексту для більшого контрасту */
-    padding: 0 15px; /* Додаємо відступи по горизонталі */
-    font-size: 16px; /* Робимо текст трохи меншим */
+    background-color: transparent;
+    color: var(--text-dark);
+    padding: 0 0.9375rem; /* 0 15px */
+    font-size: 1rem; /* 16px */
+    border-radius: 0;
   }
 
-  .about-us-nav a:hover {
-    background-color: transparent; /* Прибираємо фон при наведенні */
-    color: #3498db; /* Змінюємо колір тексту при наведенні */
+  .about-us-nav a:hover,
+  .about-us-nav a:focus {
+    background-color: transparent;
+    color: var(--secondary-color);
+  }
+
+  .page-header {
+    justify-content: flex-start;
+    gap: 2rem;
+  }
+
+  .header-title {
+    flex-grow: 1;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
   }
 }

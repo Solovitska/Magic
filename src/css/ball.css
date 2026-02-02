@@ -20,7 +20,7 @@
   }
   50% {
     border-width: 3px;
-    border-color: #50919d; /* Колір рамки */
+    border-color: #90509d; /* Колір рамки */
   }
   100% {
     border-width: 0;
@@ -30,7 +30,7 @@
 
 /* Базові стилі */
 .support-seniors {
-  background: linear-gradient(135deg, #ECEFF1, #B0BEC5 50%, #90A4AE);
+  background: linear-gradient(135deg, #530b72, #753572, transparent);
   padding: 40px 20px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(144, 164, 174, 0.15);
   position: relative;
@@ -144,7 +144,7 @@
   text-align: left;
   margin: 0;
   color: #000;
- 
+
 }
 
 .support-seniors-benefits li {

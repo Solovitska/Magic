@@ -1,15 +1,15 @@
-/* Общие стили для раздела FAQ */
+/* ===== Заголовок FAQ ===== */
 .title-faq {
-  font-weight: normal;
+  font-weight: 400;
   font-size: 16px;
   margin-bottom: 22px;
   padding-left: 1px;
   line-height: 1.5;
   letter-spacing: -0.02em;
-  color: rgba(250, 250, 250, 0.4);
+  color: rgba(245, 245, 245, 0.65); /* Extra White */
 }
 
-/* Стили для контейнера аккордеона */
+/* ===== Контейнер акордеона ===== */
 .faq-section .accordion-container {
   position: relative;
   overflow: hidden;
@@ -20,38 +20,48 @@
   border: none;
 }
 
-/* Стили для кнопок аккордеона */
+/* ===== Кнопки акордеона ===== */
 .faq-section .ac-trigger.btn-text-faq {
   font-family: 'Inter Tight', sans-serif;
   font-weight: 600;
   padding: 1px 77px 1px 1px;
   font-size: 20px;
-  color: rgba(250, 250, 250, 1);
-  position: relative; /* Для позиционирования псевдоэлемента */
-  padding-top: 20px; /* Отступ сверху для текста */
+  color: #F5F5F5;
+  position: relative;
+  padding-top: 20px;
   padding-bottom: 20px;
   line-height: 1.5;
   letter-spacing: -0.02em;
+  transition: color 0.3s ease;
 }
 
-/* Стили текста внутри аккордеона */
+.faq-section .ac-trigger.btn-text-faq:hover {
+  color: #B96247; /* Persimmon */
+}
+
+/* ===== Текст відповіді ===== */
 .faq-section .ac .ac-panel .ac-text {
   font-family: 'Inter Tight', sans-serif;
   font-weight: 500;
   padding: 0px 0px 12px 1px;
   font-size: 15px;
-  line-height: 1.5;
+  line-height: 1.6;
   letter-spacing: -0.02em;
-  color: rgba(250, 250, 250, 0.6);
+  color: rgba(245, 245, 245, 0.75);
 }
 
-/* Стили стрелок в кнопках аккордеона */
+/* ===== Стрілки ===== */
 .arrow {
-  border: 1px solid rgba(250, 250, 250, 0.2);
+  border: 1px solid rgba(174, 213, 129, 0.5); /* Basil Green */
   border-radius: 100px;
   padding: 7px;
   width: 34px;
   height: 34px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.ac-trigger:hover .arrow {
+  border-color: #B96247;
 }
 
 .ac-trigger .arrow {
@@ -67,7 +77,7 @@
   transform: translateY(0%);
 }
 
-/* Переключение отображения стрелок */
+/* ===== Перемикання стрілок ===== */
 .ac-trigger .arrow-down,
 .is-active .ac-trigger .arrow-up {
   display: block;
@@ -78,47 +88,44 @@
   display: none;
 }
 
-/* Стили псевдоэлементов и интерактивных состояний */
-.faq-section .ac-trigger.btn-text-faq:before,
+/* ===== Лінії ===== */
+.faq-section .ac-trigger.btn-text-faq::before,
 .faq-section .accordion-container::after {
   content: '';
   display: block;
   height: 1px;
-  background-color: rgba(250, 250, 250, 0.2);
+  background-color: rgba(174, 213, 129, 0.35);
   width: 100%;
   position: absolute;
   left: 0;
 }
 
-.faq-section .ac-trigger.btn-text-faq:before {
+.faq-section .ac-trigger.btn-text-faq::before {
   top: 0;
 }
 
 .faq-section .accordion-container::after {
-  bottom: 0px;
+  bottom: 0;
 }
 
 .faq-section .accordion-container > li:last-child {
   margin-bottom: 10px;
 }
 
+/* ===== Focus ===== */
 .faq-section .ac-trigger.btn-text-faq:focus {
-  color: rgba(250, 250, 250, 1);
+  color: #753572;
   outline: none;
 }
 
-.ac-trigger:after {
+.ac-trigger::after {
   display: none;
 }
 
-/* Медиа-запросы для адаптивности */
+/* ===== Адаптив ===== */
 @media (min-width: 768px) {
   .responsive-break {
     display: none;
-  }
-
-  .responsive-breaks {
-    display: block;
   }
 
   .faq-section .ac-trigger.btn-text-faq {
@@ -137,44 +144,23 @@
 @media screen and (min-width: 1440px) {
   .faq-section .accordion-container {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-  }
-
-  .faq-section .ac-trigger.btn-text-faq {
-    padding: 32px 73px 29px 1px;
-  }
-
-  .faq-section .ac .ac-panel .ac-text {
-    padding: 0px 42px 24px 1px;
   }
 
   .faq-section .accordion-container .ac {
     width: calc(50% - 32px);
   }
 
-  /* Контроль порядка элементов */
-  .item-one {
-    order: 1;
-  }
-  .item-two {
-    order: 3;
-  }
-  .item-three {
-    order: 5;
-  }
-  .item-four {
-    order: 2;
-  }
-  .item-five {
-    order: 4;
-  }
-  .item-six {
-    order: 6;
-  }
+  /* Порядок */
+  .item-one { order: 1; }
+  .item-two { order: 3; }
+  .item-three { order: 5; }
+  .item-four { order: 2; }
+  .item-five { order: 4; }
+  .item-six { order: 6; }
 
-  /* Вертикальная линия для декоративных целей */
+  /* Вертикальна лінія */
   .vertical-line::before {
     content: '';
     position: absolute;
@@ -182,16 +168,12 @@
     bottom: 2px;
     left: 50%;
     width: 1px;
-    background-color: rgba(250, 250, 250, 0.2);
+    background-color: rgba(174, 213, 129, 0.35);
     z-index: 10;
   }
 
-  .faq-section .ac-trigger.btn-text-faq:before {
+  .faq-section .ac-trigger.btn-text-faq::before {
     width: 110%;
     left: -4%;
-  }
-
-  .faq-section .accordion-container::after {
-    bottom: 1px;
   }
 }

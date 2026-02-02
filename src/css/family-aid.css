@@ -1,0 +1,77 @@
+.military-family-aid-title {
+  font-size: 2rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 10; /* Заголовок буде завжди поверх фото */
+  background: linear-gradient(135deg, #580899 0%, #943fef 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeInDown 1s ease, colorChange 5s ease-in-out infinite;
+  -webkit-font-smoothing: antialiased;}
+
+/* Контейнер для центрування фото */
+.military-family-aid-photos {
+  position: relative;
+  width: 100%;
+  max-width: 800px; /* твоє обмеження */
+  margin: 20px auto; /* Авто-центрування по горизонталі */
+  border-radius: 15px;
+  overflow: hidden;
+  z-index: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block; /* Щоб margin auto працювало */
+}
+
+.military-hover-photos {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.military-hover-photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 1s ease, transform 1s ease;
+  filter: blur(2px) brightness(0.9);
+}
+
+.military-family-aid-photos:hover .military-hover-photo {
+  animation: hoverSlider 10s infinite;
+}
+
+@keyframes hoverSlider {
+  0%, 20% { opacity: 1; transform: scale(1); }
+  25%, 100% { opacity: 0; transform: scale(1.05); }
+}
+
+/* Додаємо плавне масштабування основного фото при ховері */
+.military-family-aid-photos:hover .military-photo-wide {
+  transform: scale(1.08);
+  filter: brightness(1.05);
+}
+
+/* Додатковий ефект для “глибини” */
+.military-family-aid-photos {
+  perspective: 1200px;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+
+.military-family-aid-photos:hover {
+  transform: rotateY(2deg);
+}
